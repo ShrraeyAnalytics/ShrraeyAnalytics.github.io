@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrraey | Business Analyst</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            scroll-behavior:smooth;
+        }
+
+        body{
+            font-family:'Inter',sans-serif;
+            background:#0b0b0d;
+            color:white;
+            line-height:1.6;
+        }
+
+        .container{
+            width:85%;
+            max-width:1250px;
+            margin:auto;
+        }
+
+        nav{
+            position:sticky;
+            top:0;
+            backdrop-filter:blur(15px);
+            background:rgba(11,11,13,0.7);
+            border-bottom:1px solid rgba(255,255,255,0.07);
+            z-index:1000;
+        }
+
+        .nav-inner{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:22px 0;
+        }
+
+        .logo{
+            font-size:24px;
+            font-weight:700;
+            letter-spacing:-0.5px;
+        }
+
+        .accent{
+            color:#6ea8ff;
+        }
+
+        .nav-links a{
+            color:#cfcfcf;
+            text-decoration:none;
+            margin-left:30px;
+            transition:0.25s;
+            font-size:15px;
+        }
+
+        .nav-links a:hover{
+            color:white;
+        }
+
+        .hero{
+            min-height:90vh;
+            display:flex;
+            align-items:center;
+        }
+
+        .hero h1{
+            font-size:72px;
+            font-weight:800;
+            line-height:1.05;
+            max-width:900px;
+            letter-spacing:-2px;
+        }
+
+        .hero p{
+            margin-top:28px;
+            font-size:20px;
+            color:#a0a0a0;
+            max-width:650px;
+        }
+
+        .btn{
+            display:inline-block;
+            margin-top:40px;
+            padding:16px 30px;
+            border-radius:14px;
+            text-decoration:none;
+            font-weight:600;
+            transition:0.25s;
+        }
+
+        .btn-primary{
+            background:white;
+            color:black;
+        }
+
+        .btn-primary:hover{
+            transform:translateY(-2px);
+        }
+
+        section{
+            padding:100px 0;
+        }
+
+        .section-title{
+            font-size:42px;
+            margin-bottom:25px;
+            letter-spacing:-1px;
+        }
+
+        .section-sub{
+            color:#9a9a9a;
+            max-width:700px;
+            margin-bottom:45px;
+            font-size:18px;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:25px;
+        }
+
+        .card{
+            background:#141418;
+            border:1px solid rgba(255,255,255,0.06);
+            border-radius:22px;
+            padding:30px;
+            transition:0.25s;
+        }
+
+        .card:hover{
+            transform:translateY(-5px);
+            border-color:rgba(110,168,255,0.3);
+        }
+
+        .card h3{
+            margin-bottom:14px;
+            font-size:22px;
+        }
+
+        .card p{
+            color:#a8a8a8;
+        }
+
+        .skill{
+            font-size:18px;
+            font-weight:500;
+        }
+
+        .project-big{
+            padding:40px;
+        }
+
+        .project-tag{
+            display:inline-block;
+            color:#6ea8ff;
+            margin-bottom:16px;
+            font-size:14px;
+            font-weight:600;
+            letter-spacing:0.5px;
+        }
+
+        .project-title{
+            font-size:32px;
+            margin-bottom:18px;
+        }
+
+        .project-desc{
+            color:#a9a9a9;
+            font-size:17px;
+            max-width:800px;
+        }
+
+        footer{
+            padding:60px 0;
+            border-top:1px solid rgba(255,255,255,0.08);
+            color:#8d8d8d;
+            text-align:center;
+        }
+
+        @media(max-width:768px){
+            .hero h1{
+                font-size:48px;
+            }
+
+            .nav-links{
+                display:none;
+            }
+
+            .section-title{
+                font-size:32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-inner">
+            <div class="logo">Shrraey<span class="accent">.</span></div>
+
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero container">
+        <div>
+            <h1>
+                Business Analytics.<br>
+                Data Strategy.<br>
+                Intelligent Decision-Making.
+            </h1>
+
+            <p>
+                Aspiring Business Analyst focused on analytics, financial intelligence,
+                machine learning, and building data-driven systems that solve real problems.
+            </p>
+
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <h2 class="section-title">About</h2>
+        <p class="section-sub">
+            I’m building expertise at the intersection of business analysis,
+            data intelligence, and applied machine learning — turning raw data
+            into meaningful strategic insight.
+        </p>
+    </section>
+
+    <section id="skills" class="container">
+        <h2 class="section-title">Core Skills</h2>
+
+        <div class="grid">
+            <div class="card"><div class="skill">Python</div></div>
+            <div class="card"><div class="skill">Pandas</div></div>
+            <div class="card"><div class="skill">Matplotlib</div></div>
+            <div class="card"><div class="skill">Power BI</div></div>
+            <div class="card"><div class="skill">Excel Analytics</div></div>
+            <div class="card"><div class="skill">Applied Machine Learning</div></div>
+        </div>
+    </section>
+
+    <section id="projects" class="container">
+        <h2 class="section-title">Featured Project</h2>
+
+        <div class="card project-big">
+            <div class="project-tag">FINANCIAL INTELLIGENCE</div>
+
+            <div class="project-title">
+                Top 20 Global Companies — Financial Dashboard
+            </div>
+
+            <p class="project-desc">
+                Built a financial intelligence dashboard analyzing revenue, profit,
+                market capitalization, workforce scale, and operational efficiency
+                across leading global corporations using Python, Excel, and Power BI.
+            </p>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-sub">
+            Open to connecting, collaborating, and building meaningful analytical work.
+        </p>
+    </section>
+
+    <footer id="contact">
+        © 2026 Shrraey — Built with precision.
+    </footer>
+
+</body>
+</html>
