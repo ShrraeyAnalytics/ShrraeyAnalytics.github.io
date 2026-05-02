@@ -1,289 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shrraey | Business Analyst</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<title>Shrraey Analytics</title>
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            scroll-behavior:smooth;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-        body{
-            font-family:'Inter',sans-serif;
-            background:#0b0b0d;
-            color:white;
-            line-height:1.6;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
 
-        .container{
-            width:85%;
-            max-width:1250px;
-            margin:auto;
-        }
+body{
+    background:#050507;
+    color:white;
+    overflow-x:hidden;
+}
 
-        nav{
-            position:sticky;
-            top:0;
-            backdrop-filter:blur(15px);
-            background:rgba(11,11,13,0.7);
-            border-bottom:1px solid rgba(255,255,255,0.07);
-            z-index:1000;
-        }
+/* BACKGROUND CANVAS */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+}
 
-        .nav-inner{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:22px 0;
-        }
+/* NAV */
+nav{
+    position:fixed;
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    backdrop-filter:blur(10px);
+    background:rgba(0,0,0,0.4);
+}
 
-        .logo{
-            font-size:24px;
-            font-weight:700;
-            letter-spacing:-0.5px;
-        }
+.logo{
+    font-weight:700;
+    font-size:20px;
+}
 
-        .accent{
-            color:#6ea8ff;
-        }
+.nav-links a{
+    margin-left:25px;
+    text-decoration:none;
+    color:#aaa;
+    transition:0.3s;
+}
+.nav-links a:hover{
+    color:white;
+}
 
-        .nav-links a{
-            color:#cfcfcf;
-            text-decoration:none;
-            margin-left:30px;
-            transition:0.25s;
-            font-size:15px;
-        }
+/* HERO */
+.hero{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    padding:0 8%;
+}
 
-        .nav-links a:hover{
-            color:white;
-        }
+.hero h1{
+    font-size:64px;
+    font-weight:800;
+    line-height:1.1;
+}
 
-        .hero{
-            min-height:90vh;
-            display:flex;
-            align-items:center;
-        }
+.hero p{
+    margin-top:20px;
+    color:#aaa;
+    font-size:18px;
+    max-width:600px;
+}
 
-        .hero h1{
-            font-size:72px;
-            font-weight:800;
-            line-height:1.05;
-            max-width:900px;
-            letter-spacing:-2px;
-        }
+.btn{
+    margin-top:30px;
+    display:inline-block;
+    padding:14px 28px;
+    background:white;
+    color:black;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+.btn:hover{
+    transform:translateY(-3px);
+}
 
-        .hero p{
-            margin-top:28px;
-            font-size:20px;
-            color:#a0a0a0;
-            max-width:650px;
-        }
+/* SECTIONS */
+section{
+    padding:100px 8%;
+}
 
-        .btn{
-            display:inline-block;
-            margin-top:40px;
-            padding:16px 30px;
-            border-radius:14px;
-            text-decoration:none;
-            font-weight:600;
-            transition:0.25s;
-        }
+h2{
+    font-size:36px;
+    margin-bottom:20px;
+}
 
-        .btn-primary{
-            background:white;
-            color:black;
-        }
+.sub{
+    color:#aaa;
+    margin-bottom:40px;
+}
 
-        .btn-primary:hover{
-            transform:translateY(-2px);
-        }
+/* CARDS */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
 
-        section{
-            padding:100px 0;
-        }
+.card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:20px;
+    padding:25px;
+    backdrop-filter:blur(15px);
+    transition:0.3s;
+}
 
-        .section-title{
-            font-size:42px;
-            margin-bottom:25px;
-            letter-spacing:-1px;
-        }
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#4da3ff;
+}
 
-        .section-sub{
-            color:#9a9a9a;
-            max-width:700px;
-            margin-bottom:45px;
-            font-size:18px;
-        }
+.card h3{
+    margin-bottom:10px;
+}
 
-        .grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-            gap:25px;
-        }
+.card p{
+    color:#aaa;
+}
 
-        .card{
-            background:#141418;
-            border:1px solid rgba(255,255,255,0.06);
-            border-radius:22px;
-            padding:30px;
-            transition:0.25s;
-        }
+/* PROJECT PREVIEW */
+.preview{
+    margin-top:20px;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.1);
+}
 
-        .card:hover{
-            transform:translateY(-5px);
-            border-color:rgba(110,168,255,0.3);
-        }
+.preview iframe{
+    width:100%;
+    height:250px;
+    border:none;
+}
 
-        .card h3{
-            margin-bottom:14px;
-            font-size:22px;
-        }
+/* CONTACT */
+.contact{
+    text-align:center;
+}
 
-        .card p{
-            color:#a8a8a8;
-        }
+.email{
+    font-size:22px;
+    margin-top:15px;
+    color:#4da3ff;
+}
 
-        .skill{
-            font-size:18px;
-            font-weight:500;
-        }
-
-        .project-big{
-            padding:40px;
-        }
-
-        .project-tag{
-            display:inline-block;
-            color:#6ea8ff;
-            margin-bottom:16px;
-            font-size:14px;
-            font-weight:600;
-            letter-spacing:0.5px;
-        }
-
-        .project-title{
-            font-size:32px;
-            margin-bottom:18px;
-        }
-
-        .project-desc{
-            color:#a9a9a9;
-            font-size:17px;
-            max-width:800px;
-        }
-
-        footer{
-            padding:60px 0;
-            border-top:1px solid rgba(255,255,255,0.08);
-            color:#8d8d8d;
-            text-align:center;
-        }
-
-        @media(max-width:768px){
-            .hero h1{
-                font-size:48px;
-            }
-
-            .nav-links{
-                display:none;
-            }
-
-            .section-title{
-                font-size:32px;
-            }
-        }
-    </style>
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px;
+    color:#777;
+}
+</style>
 </head>
+
 <body>
 
-    <nav>
-        <div class="container nav-inner">
-            <div class="logo">Shrraey<span class="accent">.</span></div>
+<canvas id="bg"></canvas>
 
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </div>
-    </nav>
+<nav>
+    <div class="logo">Shrraey Analytics</div>
+    <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
 
-    <section class="hero container">
-        <div>
-            <h1>
-                Business Analytics.<br>
-                Data Strategy.<br>
-                Intelligent Decision-Making.
-            </h1>
+<div class="hero">
+    <div>
+        <h1>
+            Business Intelligence<br>
+            Analytical Precision<br>
+            Strategic Impact
+        </h1>
 
+        <p>
+            Actively seeking opportunities in Business Analytics, Applied Machine Learning,
+            and Strategic Intelligence.
+        </p>
+
+        <a href="#projects" class="btn">View Work</a>
+    </div>
+</div>
+
+<section id="projects">
+    <h2>Featured Work</h2>
+    <p class="sub">Analytical systems built using Python, Excel, and Power BI.</p>
+
+    <div class="grid">
+
+        <!-- PROJECT 1 -->
+        <div class="card">
+            <h3>Top 20 Global Companies</h3>
             <p>
-                Aspiring Business Analyst focused on analytics, financial intelligence,
-                machine learning, and building data-driven systems that solve real problems.
+                Comparative financial analysis across global leaders, focusing on revenue,
+                market capitalization, workforce scale, and profitability metrics.
             </p>
 
-            <a href="#projects" class="btn btn-primary">View Projects</a>
-        </div>
-    </section>
-
-    <section id="about" class="container">
-        <h2 class="section-title">About</h2>
-        <p class="section-sub">
-            I’m building expertise at the intersection of business analysis,
-            data intelligence, and applied machine learning — turning raw data
-            into meaningful strategic insight.
-        </p>
-    </section>
-
-    <section id="skills" class="container">
-        <h2 class="section-title">Core Skills</h2>
-
-        <div class="grid">
-            <div class="card"><div class="skill">Python</div></div>
-            <div class="card"><div class="skill">Pandas</div></div>
-            <div class="card"><div class="skill">Matplotlib</div></div>
-            <div class="card"><div class="skill">Power BI</div></div>
-            <div class="card"><div class="skill">Excel Analytics</div></div>
-            <div class="card"><div class="skill">Applied Machine Learning</div></div>
-        </div>
-    </section>
-
-    <section id="projects" class="container">
-        <h2 class="section-title">Featured Project</h2>
-
-        <div class="card project-big">
-            <div class="project-tag">FINANCIAL INTELLIGENCE</div>
-
-            <div class="project-title">
-                Top 20 Global Companies — Financial Dashboard
+            <div class="preview">
+                <iframe src="Top 20 Global Companies.pdf"></iframe>
             </div>
-
-            <p class="project-desc">
-                Built a financial intelligence dashboard analyzing revenue, profit,
-                market capitalization, workforce scale, and operational efficiency
-                across leading global corporations using Python, Excel, and Power BI.
-            </p>
         </div>
-    </section>
 
-    <section id="contact" class="container">
-        <h2 class="section-title">Contact</h2>
-        <p class="section-sub">
-            Open to connecting, collaborating, and building meaningful analytical work.
-        </p>
-    </section>
+        <!-- PROJECT 2 -->
+        <div class="card">
+            <h3>Stock Market Intelligence Terminal</h3>
+            <p>
+                Market intelligence system analyzing valuation, volatility, analyst sentiment,
+                and sector-wide performance across major publicly traded companies.
+            </p>
 
-    <footer id="contact">
-        © 2026 Shrraey — Built with precision.
-    </footer>
+            <div class="preview">
+                <iframe src="Stock Market Intelligence Terminal.pdf"></iframe>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p class="sub">Open to opportunities, collaborations, and analytical work.</p>
+
+    <div class="email">
+        shrraeyanalytics@gmail.com
+    </div>
+</section>
+
+<footer>
+    © 2026 Shrraey Analytics
+</footer>
+
+<script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for(let i=0;i<80;i++){
+    particles.push({
+        x:Math.random()*canvas.width,
+        y:Math.random()*canvas.height,
+        vx:(Math.random()-0.5)*0.5,
+        vy:(Math.random()-0.5)*0.5
+    });
+}
+
+function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    particles.forEach(p=>{
+        p.x+=p.vx;
+        p.y+=p.vy;
+
+        if(p.x<0||p.x>canvas.width)p.vx*=-1;
+        if(p.y<0||p.y>canvas.height)p.vy*=-1;
+
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,2,0,Math.PI*2);
+        ctx.fillStyle="#4da3ff";
+        ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+}
+
+draw();
+</script>
 
 </body>
 </html>
