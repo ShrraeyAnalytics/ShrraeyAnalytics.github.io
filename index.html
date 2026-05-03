@@ -1,312 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shrraey Analytics</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shrraey Analytics</title>
+  <meta name="description" content="Business Intelligence • Analytical Precision • Strategic Impact" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#05070b;
+      --bg2:#0a1120;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.035);
+      --line:rgba(255,255,255,.09);
+      --text:#f5f7fb;
+      --muted:#9aa7bd;
+      --blue:#61a8ff;
+      --blue2:#2f7dff;
+      --glow:rgba(97,168,255,.22);
+      --radius:28px;
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+    }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:"Inter",system-ui,sans-serif;
+      scroll-behavior:smooth;
+    }
 
-body{
-    background:#050507;
-    color:white;
-    overflow-x:hidden;
-}
+    body{
+      background:
+      radial-gradient(circle at 12% 18%, rgba(97,168,255,.18), transparent 28%),
+      radial-gradient(circle at 85% 20%, rgba(98,0,255,.12), transparent 25%),
+      radial-gradient(circle at 50% 80%, rgba(0,170,255,.08), transparent 30%),
+      linear-gradient(135deg,var(--bg) 0%, var(--bg2) 48%, #05070b 100%);
+      color:var(--text);
+      overflow-x:hidden;
+      min-height:100vh;
+      position:relative;
+    }
 
-/* ANIMATED BACKGROUND */
-canvas{
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:-1;
-}
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+      linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size:42px 42px;
+      pointer-events:none;
+      z-index:-1;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.7), transparent);
+    }
 
-/* NAV */
-nav{
-    position:fixed;
-    width:100%;
-    padding:20px 8%;
-    display:flex;
-    justify-content:space-between;
-    backdrop-filter:blur(12px);
-    background:rgba(0,0,0,0.4);
-}
+    .blur1,.blur2{
+      position:fixed;
+      border-radius:50%;
+      filter:blur(120px);
+      z-index:-1;
+      pointer-events:none;
+    }
 
-.logo{
-    font-weight:700;
-    font-size:18px;
-    letter-spacing:1px;
-}
+    .blur1{
+      width:420px;
+      height:420px;
+      left:-120px;
+      top:100px;
+      background:rgba(97,168,255,.18);
+      animation:float1 12s ease-in-out infinite alternate;
+    }
 
-nav a{
-    margin-left:25px;
-    text-decoration:none;
-    color:#aaa;
-    transition:0.3s;
-}
-nav a:hover{color:white;}
+    .blur2{
+      width:360px;
+      height:360px;
+      right:-100px;
+      top:280px;
+      background:rgba(140,90,255,.14);
+      animation:float2 14s ease-in-out infinite alternate;
+    }
 
-/* HERO */
-.hero{
-    height:100vh;
-    display:flex;
-    align-items:center;
-    padding:0 8%;
-}
+    @keyframes float1{
+      from{transform:translate(0,0);}
+      to{transform:translate(70px,80px);}
+    }
 
-.hero h1{
-    font-size:64px;
-    font-weight:800;
-    line-height:1.1;
-}
+    @keyframes float2{
+      from{transform:translate(0,0);}
+      to{transform:translate(-60px,-70px);}
+    }
 
-.hero p{
-    margin-top:20px;
-    color:#aaa;
-    max-width:600px;
-}
+    nav{
+      width:100%;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:22px 8%;
+      backdrop-filter:blur(22px);
+      background:rgba(7,10,18,.52);
+      border-bottom:1px solid rgba(255,255,255,.05);
+    }
 
-.btn{
-    margin-top:30px;
-    display:inline-block;
-    padding:14px 28px;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:600;
-    background:white;
-    color:black;
-    transition:0.3s;
-}
-.btn:hover{transform:translateY(-4px);}
+    .logo{
+      font-weight:800;
+      letter-spacing:.6px;
+      font-size:18px;
+    }
 
-/* KPI */
-.kpi{
-    display:flex;
-    gap:40px;
-    padding:40px 8%;
-}
+    .navlinks{
+      display:flex;
+      gap:28px;
+      align-items:center;
+    }
 
-.kpi div{
-    flex:1;
-    background:rgba(255,255,255,0.05);
-    padding:25px;
-    border-radius:15px;
-    text-align:center;
-}
+    .navlinks a{
+      color:#c8d3e6;
+      text-decoration:none;
+      font-size:14px;
+      transition:.25s;
+    }
 
-.kpi h2{font-size:32px;}
-.kpi p{color:#aaa;}
+    .navlinks a:hover{
+      color:white;
+    }
 
-/* PROJECTS */
-section{padding:100px 8%;}
+    .container{
+      width:min(1280px,92%);
+      margin:auto;
+    }
 
-h2{font-size:34px;margin-bottom:10px;}
-.sub{color:#aaa;margin-bottom:40px;}
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      padding-top:90px;
+    }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:25px;
-}
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:20px;
+      padding:10px 18px;
+      border-radius:999px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      color:#dbe6f8;
+      font-size:13px;
+      backdrop-filter:blur(18px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+    }
 
-.card{
-    background:rgba(255,255,255,0.05);
-    border-radius:20px;
-    padding:25px;
-    backdrop-filter:blur(12px);
-    transition:0.4s;
-    position:relative;
-}
+    h1{
+      font-size:clamp(3rem,7vw,6.6rem);
+      line-height:.96;
+      letter-spacing:-3px;
+      max-width:980px;
+      font-weight:900;
+    }
 
-.card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 0 30px rgba(77,163,255,0.2);
-}
+    .gradient{
+      background:linear-gradient(90deg,#ffffff,#b9d8ff,#7fb7ff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
 
-.card h3{margin-bottom:10px;}
-.card p{color:#aaa;margin-bottom:20px;}
+    .hero p{
+      margin-top:28px;
+      max-width:760px;
+      color:var(--muted);
+      font-size:20px;
+      line-height:1.8;
+    }
 
-.buttons a{
-    display:inline-block;
-    margin-right:10px;
-    padding:10px 16px;
-    border-radius:8px;
-    text-decoration:none;
-    font-size:14px;
-    background:#4da3ff;
-    color:white;
-    transition:0.3s;
-}
-.buttons a:hover{opacity:0.8;}
+    .cta{
+      margin-top:38px;
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
 
-/* CONTACT */
-.contact{text-align:center;}
-.email{
-    margin-top:20px;
-    font-size:20px;
-    color:#4da3ff;
-}
+    .btn{
+      text-decoration:none;
+      padding:15px 26px;
+      border-radius:14px;
+      font-weight:600;
+      transition:.28s;
+      border:1px solid transparent;
+    }
 
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:40px;
-    color:#777;
-}
-</style>
+    .primary{
+      background:linear-gradient(135deg,var(--blue),var(--blue2));
+      color:white;
+      box-shadow:0 14px 40px var(--glow);
+    }
+
+    .primary:hover{
+      transform:translateY(-3px);
+      box-shadow:0 22px 50px var(--glow);
+    }
+
+    .secondary{
+      background:var(--panel);
+      color:white;
+      border-color:var(--line);
+      backdrop-filter:blur(18px);
+    }
+
+    .secondary:hover{
+      transform:translateY(-3px);
+      border-color:rgba(255,255,255,.18);
+    }
+
+    section{
+      padding:100px 0;
+    }
+
+    .section-head{
+      margin-bottom:34px;
+    }
+
+    .section-head h2{
+      font-size:44px;
+      letter-spacing:-1px;
+      margin-bottom:10px;
+    }
+
+    .section-head p{
+      color:var(--muted);
+      font-size:18px;
+    }
+
+    .kpis{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:22px;
+    }
+
+    .glass{
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:28px;
+      backdrop-filter:blur(28px);
+      box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.08);
+      transition:.35s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .glass::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:linear-gradient(120deg,transparent,rgba(255,255,255,.08),transparent);
+      transform:translateX(-120%);
+      transition:.8s;
+    }
+
+    .glass:hover::before{
+      transform:translateX(120%);
+    }
+
+    .glass:hover{
+      transform:translateY(-6px);
+      border-color:rgba(97,168,255,.25);
+      box-shadow:0 24px 80px rgba(0,0,0,.5), 0 0 50px rgba(97,168,255,.08);
+    }
+
+    .metric{
+      font-size:42px;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+
+    .label{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .projects{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+    }
+
+    .project{
+      min-height:330px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .project h3{
+      font-size:28px;
+      margin-bottom:14px;
+      letter-spacing:-.5px;
+    }
+
+    .project p{
+      color:var(--muted);
+      line-height:1.8;
+      margin-bottom:26px;
+    }
+
+    .tags{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:28px;
+    }
+
+    .tag{
+      padding:9px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      color:#dfe8f7;
+      font-size:12px;
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .contact{
+      text-align:center;
+    }
+
+    .mail{
+      margin-top:22px;
+      font-size:26px;
+      font-weight:700;
+      color:#a7ceff;
+    }
+
+    footer{
+      padding:36px 0 50px;
+      text-align:center;
+      color:#6f7d94;
+      font-size:14px;
+    }
+
+    @media(max-width:980px){
+      .kpis,.projects{
+        grid-template-columns:1fr;
+      }
+
+      .navlinks{
+        display:none;
+      }
+
+      .hero p{
+        font-size:17px;
+      }
+
+      .section-head h2{
+        font-size:34px;
+      }
+
+      .mail{
+        font-size:20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="blur1"></div>
+  <div class="blur2"></div>
 
-<canvas id="bg"></canvas>
-
-<nav>
+  <nav>
     <div class="logo">Shrraey Analytics</div>
-    <div>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+    <div class="navlinks">
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/shrraeyanalytics" target="_blank">GitHub</a>
     </div>
-</nav>
+  </nav>
 
-<div class="hero">
-    <div>
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Open to opportunities in Analytics • BI • Applied ML</span>
+
         <h1>
-            Business Intelligence<br>
-            Analytical Precision<br>
-            Strategic Impact
+          Business Intelligence.<br>
+          <span class="gradient">Analytical Precision.</span><br>
+          Strategic Impact.
         </h1>
 
         <p>
-            Actively seeking opportunities in Business Analytics, Applied Machine Learning, and Strategic Intelligence.
+          Building sharp, modern analytical systems through data visualization,
+          strategic intelligence, and decision-focused modeling—turning raw data into
+          clear business insight.
         </p>
 
-        <a href="#projects" class="btn">View Work</a>
-    </div>
-</div>
+        <div class="cta">
+          <a href="#projects" class="btn primary">View Work</a>
+          <a href="https://github.com/shrraeyanalytics" target="_blank" class="btn secondary">GitHub Profile</a>
+        </div>
+      </div>
+    </section>
 
-<div class="kpi">
-    <div>
-        <h2 id="k1">0</h2>
-        <p>Projects Built</p>
-    </div>
-    <div>
-        <h2 id="k2">0</h2>
-        <p>Companies Analyzed</p>
-    </div>
-    <div>
-        <h2 id="k3">0</h2>
-        <p>Markets Covered</p>
-    </div>
-</div>
-
-<section id="projects">
-    <h2>Featured Work</h2>
-    <p class="sub">Data-driven analytical systems built with precision.</p>
-
-    <div class="grid">
-
-        <div class="card">
-            <h3>Top 20 Global Companies</h3>
-            <p>
-                Comparative analysis of global corporations across revenue, workforce,
-                market capitalization, and profitability metrics.
-            </p>
-
-            <div class="buttons">
-                <a href="Top20GlobalCompanies.pbix" target="_blank">Download</a>
-                <a href="https://github.com/shrraeyanalytics" target="_blank">GitHub</a>
-            </div>
+    <section>
+      <div class="kpis">
+        <div class="glass">
+          <div class="metric">3+</div>
+          <div class="label">Analytics Projects</div>
         </div>
 
-        <div class="card">
+        <div class="glass">
+          <div class="metric">70+</div>
+          <div class="label">Companies Analyzed</div>
+        </div>
+
+        <div class="glass">
+          <div class="metric">15+</div>
+          <div class="label">Business Metrics Modeled</div>
+        </div>
+
+        <div class="glass">
+          <div class="metric">∞</div>
+          <div class="label">Optimization Mindset</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-head">
+        <h2>Featured Work</h2>
+        <p>Premium business intelligence dashboards built with Python, Pandas, Excel, and Power BI.</p>
+      </div>
+
+      <div class="projects">
+        <div class="glass project">
+          <div>
+            <h3>Top Global Company Analysis</h3>
+            <p>
+              Comparative enterprise intelligence dashboard analyzing revenue,
+              valuation, workforce scale, profitability, and market dominance across global leaders.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Power BI</span>
+              <span class="tag">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Financial Analysis</span>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="Top20GlobalCompanies.pbix" target="_blank">Open Project</a>
+          </div>
+        </div>
+
+        <div class="glass project">
+          <div>
             <h3>Stock Market Intelligence Terminal</h3>
             <p>
-                Advanced market dashboard analyzing valuation, volatility, sector performance,
-                and analyst sentiment across major equities.
+              Advanced market intelligence terminal covering valuation,
+              volatility, sector performance, analyst sentiment, and strategic equity insight.
             </p>
 
-            <div class="buttons">
-                <a href="Stock Market Intelligence Terminal.pbix" target="_blank">Download</a>
-                <a href="https://github.com/shrraeyanalytics" target="_blank">GitHub</a>
+            <div class="tags">
+              <span class="tag">Market Analytics</span>
+              <span class="tag">Visualization</span>
+              <span class="tag">Strategy</span>
+              <span class="tag">Power BI</span>
             </div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="StockMarketIntelligenceTerminal.pbix" target="_blank">Open Project</a>
+          </div>
         </div>
+      </div>
+    </section>
 
-    </div>
-</section>
+    <section id="contact" class="contact">
+      <div class="section-head">
+        <h2>Connect</h2>
+        <p>Available for opportunities, collaborations, and analytical work.</p>
+      </div>
 
-<section id="contact" class="contact">
-    <h2>Contact</h2>
-    <p class="sub">Open to opportunities and collaborations.</p>
+      <div class="mail">shrraeyanalytics@gmail.com</div>
+    </section>
 
-    <div class="email">
-        shrraeyanalytics@gmail.com
-    </div>
-</section>
-
-<footer>
-    © 2026 Shrraey Analytics
-</footer>
-
-<script>
-/* BACKGROUND */
-const canvas = document.getElementById("bg");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles=[];
-for(let i=0;i<100;i++){
-    particles.push({
-        x:Math.random()*canvas.width,
-        y:Math.random()*canvas.height,
-        vx:(Math.random()-0.5),
-        vy:(Math.random()-0.5)
-    });
-}
-
-function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-
-    particles.forEach(p=>{
-        p.x+=p.vx;
-        p.y+=p.vy;
-
-        if(p.x<0||p.x>canvas.width)p.vx*=-1;
-        if(p.y<0||p.y>canvas.height)p.vy*=-1;
-
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,2,0,Math.PI*2);
-        ctx.fillStyle="#4da3ff";
-        ctx.fill();
-    });
-
-    requestAnimationFrame(draw);
-}
-draw();
-
-/* KPI COUNTER */
-function animate(id, target){
-    let el=document.getElementById(id);
-    let count=0;
-    let step=target/50;
-
-    let interval=setInterval(()=>{
-        count+=step;
-        if(count>=target){
-            count=target;
-            clearInterval(interval);
-        }
-        el.innerText=Math.floor(count);
-    },30);
-}
-
-animate("k1",2);
-animate("k2",50);
-animate("k3",5);
-</script>
-
+    <footer>
+      © 2026 Shrraey Analytics
+    </footer>
+  </main>
 </body>
 </html>
